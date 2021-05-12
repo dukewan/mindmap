@@ -221,8 +221,8 @@ export default class MindMap extends Vue {
     this.mindmapSvgZoom = this.zoom.on('zoom', () => { this.mindmapG.attr('transform', d3.event.transform) })
       .filter(() => (
         (d3.event.ctrlKey && d3.event.type !== 'mousedown')
-        || (this.spaceKey && d3.event.type !== 'wheel')
-      ) && !d3.event.button) // 开启双指捏合 空格键+左键可拖移
+        || d3.event.type !== 'wheel'
+      ) && !d3.event.button) // 开启双指捏合 左键可拖移
       .scaleExtent([0.1, 8]) // 缩放倍数: 0.1～8
     this.makeZoom(this.zoomable)
   }
