@@ -76,7 +76,7 @@ div#mindmap {
   svg {
     flex: auto;
     outline: none;
-    background-color: rgb(238, 238, 243);
+    background-color: #fff;
 
     &.grab { cursor: grab; }
 
@@ -117,12 +117,12 @@ div#mindmap {
       opacity: 0;
       > {
         path {
-          fill: #8685FF;
+          fill: #066EEC;
         }
-        rect {
+        circle {
           fill: white;
-          stroke: grey;
-          stroke-width: 0.5;
+          stroke: #F2F2F2;
+          stroke-width: 2;
         }
       }
     }

@@ -134,7 +134,7 @@ export default class MindMap extends Vue {
   multiSeleFlag = false
   minTextWidth = 16
   minTextHeight = 21
-  gBtnSide = 24 // gBtn边长
+  gBtnSide = 12 // gBtn 半径
   foreignBorderWidth = 3
   spaceKey = false
   toRecord = true // 判断是否需要记录mmdata的数据快照
@@ -670,7 +670,7 @@ export default class MindMap extends Vue {
       if ((n[i] as SVGElement).className.baseVal.includes('gButton')) {
         d3.select(n[i]).style('opacity', 1)
       } else {
-        d3.selectAll('g.gButton').filter((a, b, c) => (c[b] as Element).parentNode === n[i].parentNode).style('opacity', 0.5)
+        d3.selectAll('g.gButton').filter((a, b, c) => (c[b] as Element).parentNode === n[i].parentNode).style('opacity', 1)
       }
     }
   }
@@ -907,8 +907,8 @@ export default class MindMap extends Vue {
     })
 
     const gBtn = gNode.append('g').attr('class', 'gButton').attr('transform', gBtnTransform).style('visibility', gBtnVisible)
-    gBtn.append('rect').attr('width', gBtnSide).attr('height', gBtnSide).attr('rx', 3).attr('ry', 3)
-    gBtn.append('path').attr('d', 'M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z')
+    gBtn.append('circle').attr('r', gBtnSide).attr('cx', 3).attr('cy', 3)
+    gBtn.append('path').attr('d', 'M 7.9 3.7 H 3.7 V 7.9 C 3.7 8.6 2.3 8.6 2.3 7.9 H 2.3 V 3.7 H -1.9 C -2.6 3.7 -2.6 2.3 -1.9 2.3 V 2.3 H 2.3 V -1.9 C 2.3 -2.6 3.7 -2.6 3.7 -1.9 H 3.7 V 2.3 H 7.9 C 8.6 2.3 8.6 3.7 7.9 3.7 V 3.7 Z')
 
     const ell = gNode.append('g').attr('class', 'gEllipsis').attr('transform', gEllTransform).style('visibility', gEllVisible)
       .classed('show', (d: FlexNode) => (d.data._children?.length || 0) > 0)
